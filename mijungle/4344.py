@@ -4,25 +4,21 @@
 import sys
 input = sys.stdin.readline
 
-nums = []
-for i in range(N):
-    a = list(map(int, input().split()))
-    nums.append(a)
+n = int(input())
+y = [list(map(int, input().split())) for _ in range(n)]
 
-averarray = []
-for i in range(N):
-    aver = (sum(nums[i])-nums[i][0]) / nums[i][0]
-    nums[i].append(aver)
+m = []
+for li in y:
+    M = sum(li) - li[0]
+    aver = M/li[0]
+    li.append(aver)
+    m.append(li)
 
-ddd = []
-for i in range(N):
+ans = []
+for li in y: 
     count = 0
-    for j in range(1,len(nums[i])-1 ):
-        if nums[i][j]>nums[i][-1]:
+    for i in range(1, len(li)-1):
+        s = []
+        if li[i] > li[-1]:
             count += 1
-    ddd.append(count/nums[i][0])
-
-
-for i in range(len(ddd)):
-    ans = 100 * ddd[i]
-    print(format(ans,'.3f')+'%')
+    print(format(count/li[0]*100,'.3f')+"%")
