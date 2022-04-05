@@ -1,55 +1,36 @@
-# 다시풀기
-
 import sys
-min_value = sys.maxsize
+
 input = sys.stdin.readline
 
 N = int(input())
-w = []
-visited = [False]*N
-for i in range(N):
-    w.append(list(map(int, input().split())))
 
-result = []
+# w = [list(map(int, input().split())) for _ in range(N)]
+w = [[int(x) for x in input().split()] for _ in range(N)]
 
 
-# 틀렷습니다.
-def sales(x, y, cost, startingPoint):
-    """x 방문 횟수, y 어디 방문한지, cost 비용, startkingPoint 시작점"""
-    # global result
-    # if x == N:
-    #     result.append(cost)
-    #     return
-    if x == N-1:
-        if w[y][startingPoint] != 0:
-            cost += w[y][startingPoint]
-            # visited[startingPoint] = True
-            # sales(x+1, startingPoint, cost, startingPoint)
-            result.append(cost)
-            # visited[startingPoint] = False
+min_value = 1e9
+
+# print(w)
+
+
+def dfs(next, start, cost, visited):
+    global min_value
+
+    if len(visited) == N:
+        # 방문 완료
+        if w[next][start] != 0:
+            # 갈수 잇다면~?
+            min_value = min(cost+w[next][start], min_value)
         return
-
-    for i in range(N):
-        if (visited[i] == False) and (w[y][i] != 0) and (i != startingPoint):
-            # 방문
-            cost += w[y][i]
-            visited[y] = True
-            sales(x+1, i, cost, startingPoint)
-            visited[y] = False
-            # min max 비교
+    else:
+        for i in range(N):
+            if i not in visited and w[next][i] != 0 and cost < min_value:
+                visited.append(i)
+                dfs(i, start, cost+w[next][i], visited)
+                visited.pop()
 
 
 for i in range(N):
-    # for j in range(N):
-    sales(0, i, 0, i)
+    dfs(i, i, 0, [i])
 
-
-result.append(min_value)
-
-
-print(min(result))
-
-print(result)
-print(visited)
-# print(maxN)
-# print(minN)
+print(min_value)

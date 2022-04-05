@@ -1,4 +1,3 @@
-# 다시 풀기 시간초과
 import sys
 sys.setrecursionlimit(10**8)
 input = sys.stdin.readline
