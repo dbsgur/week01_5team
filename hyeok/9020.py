@@ -1,4 +1,3 @@
-# 다시 풀기
 import sys
 
 input = sys.stdin.readline
@@ -6,12 +5,13 @@ input = sys.stdin.readline
 # 에라토스테네스의 체
 primeNumber = [0 for i in range(10001)]
 
+T = int(input())
+
 primeNumber[1] = 1
 for i in range(2, 98):
     for j in range(i*2, 10001, i):
         primeNumber[j] = 1
 
-T = int(input())
 
 for i in range(T):
     num = int(input())
