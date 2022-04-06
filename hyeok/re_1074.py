@@ -28,6 +28,5 @@ def zet(N, x, y):
     zet(N, x+N, y)
     zet(N, x+N, y+N)
 
-
 zet(2**N, 0, 0)
 # print(count-1)
