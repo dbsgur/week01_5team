@@ -1,12 +1,21 @@
-import sys
-from itertools import permutations
+n = int(input())
 
-x, y = int(input()), int(input())
-m = [input().rstrip() for _ in range(x)]
+def Hanoi(n,start,end):
+    if n == 0: 
+        return
+    spare = 6 - start - end    
+    Hanoi(n-1, start, spare)
+    Move(n, start, end) 
+    Hanoi(n-1, spare, end) 
 
-ans = set()
-for per in permutations(m, y):
-    ans.add(''.join(per))
-    
-print(ans)
-print(len(ans))
+
+def Move(n, orig, dest):
+    print(orig, dest) 
+
+if n <= 20:
+    count = 2 ** n - 1
+    print(count) 
+    Hanoi(n, 1, 3)
+elif n > 20:
+    count = 2 ** n - 1
+    print(count)

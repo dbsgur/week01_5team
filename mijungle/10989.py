@@ -1,11 +1,16 @@
+from operator import indexOf
 import sys
 
 input =  sys.stdin.readline
 
 n = int(input())
-m = [int(input().rstrip()) for _ in range(n)]
+ans = [0] * 10001
 
-m.sort()
+for i in range(n):
+    data = int(input())
+    ans[data] += 1
 
-for i in m:
-    print(i)
+for i in range(10001):
+    if ans[i] != 0:
+        for j in range(ans[i]):
+            print(i)
