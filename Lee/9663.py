@@ -26,7 +26,7 @@ def queen(x):
     if x==n: 
         result+=1 #카운트
     else:
-        for i in range(n): #x(0)~8까지
+        for i in range(n): #x0~7까지
             row[x]=i
             if check(x):
                 queen(x+1)
