@@ -7,7 +7,7 @@ nums = list(map(int,input().split()))
 operator = list(map(int,input().split()))
 
 maximum = -1e9
-minimum = 1e9
+minimum = 1e9 #1000000000
 
 def dfs(depth, total, add, sub, mul, div): #(1, 5, 0, 0, 1, 0)
     global maximum, minimum
